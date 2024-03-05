@@ -1,4 +1,5 @@
 import { Uuid } from "../../shared/domain/value-objects/uuid.vo";
+import { CategoryValidatorFactory } from "./category.validator";
 
 export type CategoryConstructorProps = {
   category_id?: Uuid;
@@ -57,5 +58,10 @@ export class Category {
       is_active: this.is_active,
       created_at: this.created_at,
     };
+  }
+
+  static validate(entity: Category): boolean {
+    const validator = CategoryValidatorFactory.create();
+    return validator.validate(entity);
   }
 }
