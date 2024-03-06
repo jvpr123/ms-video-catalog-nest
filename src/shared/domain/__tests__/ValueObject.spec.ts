@@ -1,4 +1,4 @@
-import { ValueObject } from "../ValueObject";
+import { ValueObject } from "../value-objects/ValueObject";
 
 class StringValueObject extends ValueObject {
     constructor (readonly value: string) {
