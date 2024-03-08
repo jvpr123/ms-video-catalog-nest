@@ -1,4 +1,3 @@
-import { filter } from "lodash";
 import { Entity } from "../../../domain/entity";
 import { SearchParams, SortDirection } from '../../../domain/repository/search-params';
 import { SearchResult } from '../../../domain/repository/search-result';
