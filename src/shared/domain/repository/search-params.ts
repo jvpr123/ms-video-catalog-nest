@@ -12,7 +12,7 @@ export type SearchParamsConstructorProps<Filter = string> = {
 
 export class SearchParams<Filter = string> extends ValueObject {
     protected _page?: number;
-    protected _per_page?: number = 15;
+    protected _per_page?: number;
     protected _sort?: string | null;
     protected _sort_dir?: SortDirection | null;
     protected _filter?: Filter | null;
@@ -43,8 +43,9 @@ export class SearchParams<Filter = string> extends ValueObject {
     }
     private set per_page(value: number) {
         let _per_page = value === (true as any) ? this._per_page : +value;
-        if (Number.isNaN(_per_page) || this.per_page <= 0 || parseInt(_per_page as any) !== _per_page) {
+        if (Number.isNaN(_per_page) || _per_page <= 0 || parseInt(_per_page as any) !== _per_page) {
             this._per_page = 1;
+            return;
         }
 
         this._per_page = _per_page;
