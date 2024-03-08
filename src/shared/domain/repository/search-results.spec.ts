@@ -1,33 +1,5 @@
-import { Entity } from "../entity";
-import { Uuid } from "../value-objects/uuid.vo";
+import { EntityStub } from '../../infra/testing/entity-stub';
 import { SearchResult } from './search-result';
-
-type EntityConstructorStubProps = {
-    entity_id?: Uuid;
-    name: string;
-    price: number;
-}
-
-class EntityStub extends Entity {
-    entity_id: Uuid;
-    name: string;
-    price: number;
-
-    constructor(props: EntityConstructorStubProps) {
-        super();
-        this.entity_id = props.entity_id || new Uuid();
-        this.name = props.name;
-        this.price = props.price;
-    }
-
-    toJSON() {
-        return {
-            entity_id: this.entity_id.id,
-            name: this.name,
-            price: this.price,
-        }
-    }
-}
 
 describe('SearchResult Unit Tests', () => {
     const entityA = new EntityStub({ name: 'item_a', price: 100 });

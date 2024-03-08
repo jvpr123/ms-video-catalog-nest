@@ -1,34 +1,7 @@
-import { Entity } from '../../../domain/entity';
 import { EntityNotFoundError } from '../../../domain/errors/not-found.error';
 import { Uuid } from '../../../domain/value-objects/uuid.vo';
+import { EntityStub } from '../../testing/entity-stub';
 import { InMemoryRepository } from './in-memory.repository';
-
-type EntityConstructorStubProps = {
-    entity_id?: Uuid;
-    name: string;
-    price: number;
-}
-
-class EntityStub extends Entity {
-    entity_id: Uuid;
-    name: string;
-    price: number;
-
-    constructor(props: EntityConstructorStubProps) {
-        super();
-        this.entity_id = props.entity_id || new Uuid();
-        this.name = props.name;
-        this.price = props.price;
-    }
-
-    toJSON() {
-        return {
-            entity_id: this.entity_id.id,
-            name: this.name,
-            price: this.price,
-        }
-    }
-}
 
 class InMemoryRepositoryStub extends InMemoryRepository<EntityStub, Uuid> {
     getEntity(): new (...args: any[]) => EntityStub {
