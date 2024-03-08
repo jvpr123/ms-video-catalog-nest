@@ -1,4 +1,4 @@
-import { SearchParams, SearchParamsConstructorProps, SortDirection } from "./search-params";
+import { SearchParams, SortDirection } from "./search-params";
 
 describe('SearchParams Unit Tests', () => {
     test('should return search params with default values when no prop is given in constructor', () => {
