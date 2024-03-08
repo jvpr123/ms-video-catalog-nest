@@ -4,7 +4,7 @@ import { IRepository } from "../../domain/repository/repository.interface";
 import { ValueObject } from "../../domain/value-objects/ValueObject";
 
 export abstract class InMemoryRepository<E extends Entity, EntityId extends ValueObject> implements IRepository<E, EntityId> {
-    private items: E[] = [];
+    public items: E[] = [];
 
     async insert(entity: E): Promise<void> {
         this.items.push(entity);
