@@ -31,9 +31,9 @@ export abstract class InMemorySearchableRepository<E extends Entity, EntityId ex
         sort_dir: SortDirection | null,
         custom_getter?: (sort: string, item: E) => any
     ): E[] {
-        if (!sort || !this.sortableFields.includes(sort)) {
-            return items;
-        }
+        if (!sort || !this.sortableFields.includes(sort)) return items;
+
+        if (!sort_dir) sort_dir = 'asc';
 
         return [...items].sort((a, b) => {
             // @ts-ignore
@@ -48,7 +48,7 @@ export abstract class InMemorySearchableRepository<E extends Entity, EntityId ex
         });
     }
 
-    protected applyPagination(items: E[], page: SearchParams<Filter>['page'], per_page: SearchParams<Filter>['per_page']): E[] {
+    protected applyPagination(items: E[], page: SearchParams<Filter>['page'] = 1, per_page: SearchParams<Filter>['per_page'] = 10): E[] {
         const start = (page - 1) * per_page;
         const limit = start + per_page;
 
